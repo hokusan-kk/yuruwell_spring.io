@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ja">
+      <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>YURUWELLゆるウェル</title>
+              <!--↓CSSリンク-->
+              <link rel="stylesheet" href="style.css">
+              <!--↓フォントNotoSansJP-->
+	          <link rel="preconnect" href="https://fonts.googleapis.com">
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+              <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+              <!--↓フォントZen Kurenaido-->
+              <link rel="preconnect" href="https://fonts.googleapis.com">
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+              <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Noto+Sans+JP:wght@100..900&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+              <!--↓フォントM PLUS 1p-->
+              <link rel="preconnect" href="https://fonts.googleapis.com">
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+              <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=M+PLUS+1p&family=Noto+Sans+JP:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+              <!-- Google tag (gtag.js) -->
+             <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+             <script>
+               window.dataLayer = window.dataLayer || [];
+               function gtag(){dataLayer.push(arguments);}
+               gtag('js', new Date());
+
+               // 初期設定（ページビュー）
+               gtag('config', 'G-XXXXXXXXXX', {
+                 send_page_view: true
+               });
+        </script>
+
+        </head>
+
+      <body>
+         <!--トップ〜コンセプト背景用-->
+           <!--トップ-->
+           
+           <section id="top" >
+                <header>
+                 <!--ヘッダーナビ-->
+                 <div class="header_img">
+                    <img src="img/conpany_logo.png" alt="北海道歯科産業株式会社ロゴ">
+                  </div>
+
+                  <!-- スマホ用：ハンバーガーボタン -->
+<button class="hamburger" type="button" aria-label="メニューを開く" aria-controls="headernav" aria-expanded="false">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+                  <!-- デスクトップ用ナビ -->
+                  <div class="headerlist">
+                    <nav id="headernav" class="sp-nav">
+                      <ul>
+                        <li>
+                          <a href="#top">
+                            <span class="nav-en">Top</span>
+                            <span class="nav-jp">トップ</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#concept">
+                            <span class="nav-en">Concept</span>
+                            <span class="nav-jp">ゆるウェル</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#goods">
+                            <span class="nav-en">Goods</span>
+                            <span class="nav-jp">商品紹介</span>
+                          </a>
+                        </li>
+                      
+                          
+                      </ul>
+                    </nav>
+                  </div>
+                </header>
+
+             <!--トップタイトル(ロゴ画像)-->
+             <div class="toptitle">
+              <img class="top-main" src="img/top_main.jpg" alt="YURUWELLゆるウェル">
+            
+              <!-- ロゴ画像をメインビジュアルの上に重ねる -->
+              <h1 class="top-logo">
+                <img src="img/yuruwell_logo.png" alt="YURUWELLゆるウェル">
+              </h1>
+            
+              <!-- スクロールインジケータもここに入れる -->
+              <div class="scroll-indicator">
+                <span class="scroll-text">scroll</span>
+                <span class="scroll-line"></span>
+                <span class="scroll-arrow"></span>
+              </div>
+            </div>
+
+                 <!--  トップテキスト  -->
+                  <p class="toptext">今の生活にちょっとプラスするだけで<br>自分の心とカラダに優しくなれる健康グッズのご紹介</p>
+
+              
+                 <!--固定ボタン(お申し込みはこちら→)-->
+                 <div class="top_button">
+                   <a href="https://forms.gle/4m7yCXvgKakn8WTu5" class="contact-button" target="_blank" rel="noopener noreferrer">
+                     商品のご注文はこちら
+                     <span class="arrow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="11" stroke="white"/>
+                          <polyline points="10 8 14 12 10 16"/>
+                        </svg>
+                     </span>
+                   </a>
+                 </div>
+           </section>
+
+           <!--  コンセプト  -->
+           <section id="concept">
+
+            <p class="contentback_text js-fadein fade-vertical delay-2">SUPPORT</p>
+          
+            <div class="concept_container"> 
+              
+              <div class="concept_image js-fadein fade-left">
+                <img src="img/concept_main.jpg" alt="親子の写真">
+              </div>
+          
+              <div class="conceptbox_03 js-fadein fade-up delay-1">
+                <div class="concept_title">
+                  <h2>ゆるウェルとは？</h2>
+                </div>
+              
+                <p class="concepttext">
+                  歯科医院で働くみなさまの<br>“自分と家族の美と健康”を<br>サポートします
+                </p>
+          
+                <p class="concepttext02">日々、患者さんの健康を支える立場だからこそ、<br>
+                  ご自身やご家族のことは、つい後回しになりがち。<br>
+                  そんな忙しい毎日のなかでも、無理せず、ゆるやかに<br>
+                  整えられる時間を持ってほしい<br>
+                  その想いを込めて、季節ごとに美と健康に<br>
+                  まつわるおすすめアイテムをお届けします。
+                </p> 
+              </div>
+          
+            </div>
+          
+          </section>
+          
+        <!--  グッズ紹介  -->
+    <section id="goods">
+      <div class="goods_container">
+
+    <div class="goodsbox_01">
+      <div class="goodstitle">
+        <h3>ちょっとしたものをプラスして、毎日を健康に。</h3>
+      </div>
+      <p class="goodsbox_01_text">
+        がんばる毎日を、そっと整える健康グッズを紹介
+      </p>
+      <p class="goodsbox_01_text_02">
+        あなたの毎日に、そっと寄り添う、身につけるだけで“整える”という選択を。
+      </p>
+    </div>
+
+    <div class="goods_point_container">
+
+      <div class="goods_point">
+        <div class="goods_point_box">
+            <img class="goodspoint_img" src="img/goodspoint01.png" alt="うまく休めない人アイコン">      
+            <p class="goods_point_box_text">最近、うまく休めていないと<br>感じている方へ</p>  
+        </div>
+      </div>
+     
+
+        <div class="goods_point">
+          <div class="goods_point_box">
+            <img class="goodspoint_img" src="img/goodspoint02.png" alt="寝不足な人アイコン">      
+            <p class="goods_point_box_text">朝すっきりしない日が<br>続いている方へ</p>  
+          </div>
+      </div>
+
+      <div class="goods_point">
+        <div class="goods_point_box">
+          <img class="goodspoint_img" src="img/goodspoint03.png" alt="運動をしている人アイコン">      
+          <p class="goods_point_box_text">自分の体を<br>もっと大切にしたい方へ</p>  
+        </div>
+      </div>
+    </div>
+
+    <div class="goodsbox_02">
+      <div class="goods-view">
+    
+        <div class="goods-track">
+          <div class="goods-item">
+            <img id="goods-left" src="img/goods_01.png" alt="化粧水1">
+          </div>
+    
+          <div class="goods-item">
+            <img id="goods-center" src="img/goods_02.png" alt="化粧水2">
+          </div>
+    
+          <div class="goods-item">
+            <img id="goods-right" src="img/goods_03.png" alt="化粧水3">
+          </div>
+        </div>
+    
+        <!-- サイズ確認ぼたん -->
+        <a class="size-circle-btn" href="#size" aria-label="詳しいサイズを見る">
+          <span>詳しい<br>サイズを<br>見る→</span>
+        </a>
+
+        <div id="sizeModal" class="size-modal">
+          <div class="size-modal-overlay"></div>
+        
+          <div class="size-modal-content">
+            <button class="size-modal-close" aria-label="閉じる">×</button>
+        
+            <picture>
+              <!-- SP用 -->
+              <source srcset="img/mobile_size.png" media="(max-width: 768px)">
+              <!-- PC用 -->
+              <img src="img/pc_size.png" alt="サイズ表">
+            </picture>
+          </div>
+        </div>
+    
+        <button class="mid-arrow mid-prev" type="button" aria-label="前へ"></button>
+        <button class="mid-arrow mid-next" type="button" aria-label="次へ"></button>
+    
+      </div>
+    </div>
+
+    <!-- ===== アコーディオン ===== -->
+
+    <div class="accordion" id="goods-accordion">
+
+      <div class="accordion-item">
+        <button class="accordion-header" type="button" aria-expanded="false">
+          <div class="accordion-left">
+            <img src="img/huron_logo.png" alt="HURONロゴ" class="accordion-logo">
+            <span class="accordion-title">リカバリーウェアを詳しく見る</span>
+          </div>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+    
+        <div class="accordion-content" role="region" aria-hidden="true">
+          <div class="accordion-inner">
+            <h4>HURON+ は磁気の力で血行を促進し、肩こりをやわらげます。</h4>
+            <p>着用するだけで、日常のコンディションをサポート。管理医療機器として認証された安心設計。<br>
+              テラヘルツ帯の光波とシリカ素材は、
+              その性質上、微細な振動特性を持つことが知られています。
+              HURONでは、この特性を活かした
+              独自の設計を採用しています。<br>
+              上手に休息を摂りたい方、睡眠にお困りのある方、健康管理に興味のある方におすすめです。</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="accordion-item">
+        <button class="accordion-header" type="button" aria-expanded="false">
+          <div class="accordion-left">
+            <img src="img/earufirst_logo.png" alt="インソールロゴ" class="accordion-logo">
+            <span class="accordion-title">インソールについて詳しく見る</span>
+          </div>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+    
+        <div class="accordion-content" role="region" aria-hidden="true">
+          <div class="accordion-inner">
+            <h4>30万人以上の足データと20年にわたる研究実績をもとに設計。<br>姿勢・バランス・負担軽減をサポート。</h4>
+            <p>解剖学の観点から人体を研究し、人にとって大切な「まっすぐ立つ事」を支えます。<br>
+              エアルファーストのインソールは単なる靴の中敷きではありません。<br>
+              身につけるだけで姿勢やバランスを補正し、健康な体へと導くための、最先端のテクノロジーと長年の研究成果が詰まった製品です。<br>
+               足元から身体全体のバランスを整えることで、腰痛や膝の痛みなどの悩みの軽減、そして姿勢の改善による見た目の向上にもつながります。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="goods-stop"></div>
+    
+    </div>
+    
+
+
+   </section>
+
+
+
+
+          <footer id="footer">
+
+            <div class="footer_container01">
+               <img src="img/conpany_logo.png" alt="北海道歯科産業ロゴ">
+               <ul class="footer_nav">
+                   <li><a href="#top">TOP</a></li>
+                   <li><a href="#concept">Concept</a></li>
+                   <li><a href="#goods">Goods</a></li>
+               </ul>
+           </div>
+
+            <div class="footer_logo"><img src="img/yuruwell_logo.png" alt=""></div>
+
+       </footer>
+       
+
+       <script>
+        (() => {
+          "use strict";
+        
+          document.addEventListener("DOMContentLoaded", () => {
+        
+            /* =========================================================
+              0) ユーティリティ
+            ========================================================= */
+            const $  = (s, r=document) => r.querySelector(s);
+            const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+        
+            const isSPMedia = window.matchMedia("(max-width: 428px)");
+            const getIsSP = () => isSPMedia.matches;
+        
+            const rafThrottle = (fn) => {
+              let ticking = false;
+              return (...args) => {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => {
+                  ticking = false;
+                  fn(...args);
+                });
+              };
+            };
+        
+            /* =========================================================
+              1) 固定ボタン：2秒後に表示 + GOODS最下部でストップ
+              - CSSは「--y」方式（transform全文はJSで触らない）
+            ========================================================= */
+            const btn   = $(".top_button");
+            const goods = $("#goods");
+        
+            if (btn) {
+              setTimeout(() => btn.classList.add("active"), 2000);
+            }
+        
+            if (btn && goods) {
+              const margin = -40; // CSS bottom と合わせる
+              const updateStop = () => {
+                const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        
+                // goods 下端（ページ絶対座標）
+                const goodsBottomAbs =
+                  goods.getBoundingClientRect().top + scrollY + goods.offsetHeight;
+        
+                // 画面下端（ページ絶対座標）
+                const viewportBottomAbs = scrollY + window.innerHeight;
+        
+                // 下端を越えたら、その分だけ上へ（＝見た目は停止）
+                const overlap = (viewportBottomAbs - margin) - goodsBottomAbs;
+                const y = overlap > 0 ? -overlap : 0;
+        
+                btn.style.setProperty("--y", `${y}px`);
+              };
+        
+              const onScroll = rafThrottle(updateStop);
+              updateStop();
+              window.addEventListener("scroll", onScroll, { passive: true });
+              window.addEventListener("resize", updateStop);
+            }
+        
+            /* =========================================================
+              2) GOODS：PC=3枚差し替え + SP=横スクロール全枚
+              - SP/PC切替（リサイズ）にも耐える
+            ========================================================= */
+            const goodsImages = [
+              { src: "img/goods_01.png", alt: "リカバリウェアー長袖" },
+              { src: "img/goods_02.png", alt: "リカバリウェアー半袖" },
+              { src: "img/goods_03.png", alt: "リカバリウェアー長ズボン" },
+              { src: "img/goods_04.png", alt: "リカバリリストバンド" },
+              { src: "img/goods_05.png", alt: "インソールブリッツジュニア" },
+              { src: "img/goods_06.png", alt: "インソールスーパーブリッツ" },
+              { src: "img/goods_07.png", alt: "インソールブリッツ" },
+            ];
+        
+            const track  = $(".goods-track");
+            const prevBtn = $(".mid-prev");
+            const nextBtn = $(".mid-next");
+            const leftImg   = $("#goods-left");
+            const centerImg = $("#goods-center");
+            const rightImg  = $("#goods-right");
+        
+            let centerIndex = 1;     // PC用
+            let currentMode = null;  // "sp" | "pc"
+        
+            const renderGoods = () => {
+              if (!track) return;
+        
+              const mode = getIsSP() ? "sp" : "pc";
+              if (mode === currentMode) return; // 変化がないなら何もしない
+              currentMode = mode;
+        
+              // 既存クリックを安全に（ボタンを複製してイベントリセット）
+              const resetBtn = (btnEl) => {
+                if (!btnEl || !btnEl.parentNode) return btnEl;
+                const clone = btnEl.cloneNode(true);
+                btnEl.parentNode.replaceChild(clone, btnEl);
+                return clone;
+              };
+              let pBtn = resetBtn(prevBtn);
+              let nBtn = resetBtn(nextBtn);
+        
+              if (mode === "sp") {
+                // SP：全部並べる
+                track.innerHTML = goodsImages.map(item => `
+                  <div class="goods-item">
+                    <img src="${item.src}" alt="${item.alt}">
+                  </div>
+                `).join("");
+        
+                if (pBtn) pBtn.style.display = "none";
+                if (nBtn) nBtn.style.display = "none";
+              } else {
+                // PC：3枚DOMが前提（id goods-left/center/right を使う）
+                // track をPCの元構造に戻せない場合があるので、安全策：
+                // 3枚が無いなら何もしない
+                if (!leftImg || !centerImg || !rightImg) return;
+        
+                // 矢印復帰
+                if (pBtn) pBtn.style.display = "";
+                if (nBtn) nBtn.style.display = "";
+        
+                const render3 = () => {
+                  const len = goodsImages.length;
+                  const leftIndex  = (centerIndex - 1 + len) % len;
+                  const rightIndex = (centerIndex + 1) % len;
+        
+                  leftImg.src = goodsImages[leftIndex].src;
+                  leftImg.alt = goodsImages[leftIndex].alt;
+        
+                  centerImg.src = goodsImages[centerIndex].src;
+                  centerImg.alt = goodsImages[centerIndex].alt;
+        
+                  rightImg.src = goodsImages[rightIndex].src;
+                  rightImg.alt = goodsImages[rightIndex].alt;
+                };
+        
+                if (pBtn) {
+                  pBtn.addEventListener("click", () => {
+                    centerIndex = (centerIndex - 1 + goodsImages.length) % goodsImages.length;
+                    render3();
+                  });
+                }
+                if (nBtn) {
+                  nBtn.addEventListener("click", () => {
+                    centerIndex = (centerIndex + 1) % goodsImages.length;
+                    render3();
+                  });
+                }
+        
+                render3();
+              }
+            };
+        
+            renderGoods();
+            // SP/PC切替に追従
+            if (typeof isSPMedia.addEventListener === "function") {
+              isSPMedia.addEventListener("change", renderGoods);
+            } else {
+              // Safari古め対策
+              isSPMedia.addListener(renderGoods);
+            }
+            window.addEventListener("resize", rafThrottle(renderGoods));
+        
+            /* =========================================================
+              3) ふわっと表示（.js-fadein）
+              - 1回だけ監視、表示したら解除
+            ========================================================= */
+            const fadeTargets = $$(".js-fadein");
+            if (fadeTargets.length) {
+              const fadeObserver = new IntersectionObserver((entries, obs) => {
+                for (const entry of entries) {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    obs.unobserve(entry.target);
+                  }
+                }
+              }, { threshold: 0.18 });
+        
+              fadeTargets.forEach(el => fadeObserver.observe(el));
+            }
+        
+            /* =========================================================
+              4) topロゴ/トップ画像（fade-in）
+            ========================================================= */
+            const logo = $(".top-logo");
+            const topTitle = $(".toptitle");
+            if (logo || topTitle) {
+              const io = new IntersectionObserver((entries) => {
+                for (const entry of entries) {
+                  if (entry.isIntersecting) entry.target.classList.add("fade-in");
+                }
+              }, { threshold: 0.2 });
+        
+              if (logo) io.observe(logo);
+              if (topTitle) io.observe(topTitle);
+            }
+        
+            /* =========================================================
+              5) GOODS見出し/ポイント：出現
+              - #goods .goodsbox_01 / #goods .goods_point に is-visible を付与
+            ========================================================= */
+            const goodsRevealTargets = [
+              $("#goods .goodsbox_01"),
+              ...$$('#goods .goods_point')
+            ].filter(Boolean);
+        
+            if (goodsRevealTargets.length) {
+              const io = new IntersectionObserver((entries, obs) => {
+                for (const entry of entries) {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    obs.unobserve(entry.target);
+                  }
+                }
+              }, { threshold: 0.18 });
+        
+              goodsRevealTargets.forEach(el => io.observe(el));
+            }
+        
+            /* =========================================================
+              6) SP：ハンバーガーメニュー
+            ========================================================= */
+            const hamburger = $(".hamburger");
+            const spNav = $("#headernav");
+        
+            if (hamburger && spNav) {
+              const closeMenu = () => {
+                document.body.classList.remove("menu-open");
+                hamburger.setAttribute("aria-expanded", "false");
+                hamburger.setAttribute("aria-label", "メニューを開く");
+              };
+              const openMenu = () => {
+                document.body.classList.add("menu-open");
+                hamburger.setAttribute("aria-expanded", "true");
+                hamburger.setAttribute("aria-label", "メニューを閉じる");
+              };
+        
+              hamburger.addEventListener("click", () => {
+                const isOpen = document.body.classList.contains("menu-open");
+                isOpen ? closeMenu() : openMenu();
+              });
+        
+              // メニュー内リンク押下で閉じる
+              $$('a[href^="#"]', spNav).forEach(a => a.addEventListener("click", closeMenu));
+        
+              // 外側クリックで閉じる
+              document.addEventListener("click", (e) => {
+                if (!document.body.classList.contains("menu-open")) return;
+                if (spNav.contains(e.target) || hamburger.contains(e.target)) return;
+                closeMenu();
+              });
+        
+              // ESCで閉じる
+              document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeMenu();
+              });
+            }
+
+            /* =========================================================
+              7) アコーディオン（#goods-accordion）
+              - 1つだけ開く / 再クリックで閉じる
+            ========================================================= */
+           const sizeBtn = document.querySelector('.size-circle-btn');
+           const sizeModal = document.getElementById('sizeModal');
+           const sizeClose = document.querySelector('.size-modal-close');
+           const sizeOverlay = document.querySelector('.size-modal-overlay');
+
+           sizeBtn.addEventListener('click', function(e){
+            e.preventDefault();
+           sizeModal.classList.add('active');
+           document.body.style.overflow = 'hidden'; // 背景スクロール停止
+           });
+
+           function closeModal(){
+           sizeModal.classList.remove('active');
+           document.body.style.overflow = '';
+           }
+
+           sizeClose.addEventListener('click', closeModal);
+           sizeOverlay.addEventListener('click', closeModal);
+        
+            /* =========================================================
+              7) アコーディオン（#goods-accordion）
+              - 1つだけ開く / 再クリックで閉じる
+            ========================================================= */
+            const accordion = $("#goods-accordion");
+            if (accordion) {
+              const items = $$(".accordion-item", accordion);
+        
+              const closeItem = (item) => {
+                const header  = $(".accordion-header", item);
+                const content = $(".accordion-content", item);
+                item.classList.remove("active");
+                header?.setAttribute("aria-expanded", "false");
+                content?.setAttribute("aria-hidden", "true");
+                if (content) content.style.maxHeight = "0px";
+              };
+        
+              const openItem = (item) => {
+                const header  = $(".accordion-header", item);
+                const content = $(".accordion-content", item);
+                item.classList.add("active");
+                header?.setAttribute("aria-expanded", "true");
+                content?.setAttribute("aria-hidden", "false");
+                if (content) content.style.maxHeight = content.scrollHeight + "px";
+              };
+        
+              items.forEach((item) => {
+                const header  = $(".accordion-header", item);
+                const content = $(".accordion-content", item);
+        
+                if (content) content.style.maxHeight = "0px"; // 初期閉
+        
+                header?.addEventListener("click", () => {
+                  const isOpen = item.classList.contains("active");
+                  items.forEach(closeItem);
+                  if (!isOpen) openItem(item);
+                });
+              });
+        
+              window.addEventListener("resize", rafThrottle(() => {
+                const opened = items.find(i => i.classList.contains("active"));
+                if (!opened) return;
+                const content = $(".accordion-content", opened);
+                if (content) content.style.maxHeight = content.scrollHeight + "px";
+              }));
+            }
+        
+          });
+        })();
+        </script>
+        
+
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.goods_point');
+          
+            const io = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if(entry.isIntersecting){
+                  entry.target.classList.add('is-in');
+                  io.unobserve(entry.target);
+                }
+              });
+            }, { threshold: 0.15 });
+          
+            items.forEach((el, i) => {
+              el.style.transitionDelay = (i * 90) + 'ms'; // ちょいズラし
+              io.observe(el);
+            });
+          });
+          </script>
+          
+
+</body>
+</html>
