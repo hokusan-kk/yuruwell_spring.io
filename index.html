@@ -16,6 +16,16 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&family=Roboto+Flex:wght@700;800&display=swap" rel="stylesheet">
 
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SKVVQC9C5G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SKVVQC9C5G');
+</script>
+
 </head>
 
 <body>
@@ -47,9 +57,26 @@
 
 <nav class="mobile_menu" id="mobile-menu" aria-label="ページ内メニュー" hidden>
   <a href="#first">TOPに戻る</a>
-  <a href="#drink">飲んでケア商品</a>
-  <a href="#brush">歯みがきケア商品</a>
-  <a href="https://forms.gle/WWhDDW5MDCYWm1ik8">商品を注文する</a>
+  <a
+  href="#drink"
+  data-ga-event="care_method_click"
+  data-ga-name="飲んでケア"
+>
+  飲んでケア
+</a>
+<a
+href="#brush"
+data-ga-event="care_method_click"
+data-ga-name="歯みがきケア"
+>
+歯みがきケア
+<a
+  href="https://forms.gle/WWhDDW5MDCYWm1ik8"
+  data-ga-event="order_form_click"
+  data-ga-name="Google注文フォーム"
+>
+  商品を注文する
+</a>
 </nav>
       
         <img class="first_main" src="img/top_main.png" alt="外を走るパグ">
@@ -100,7 +127,14 @@
         <p>歯磨きが苦手な子には…</p>
         <h4>飲んでケア</h4>
         <p>いつもの飲み水に加えるだけ。<br>毎日の習慣に取り入れる手軽なケアを</p>
-        <a href="#drink">飲んでケアの商品を見る <span>▶︎</span></a>
+        <a
+  href="#drink"
+  data-ga-event="care_method_click"
+  data-ga-name="飲んでケア"
+>
+  飲んでケアの商品を見る
+  <span>▶︎</span>
+</a>
 
       </article>
       
@@ -112,7 +146,11 @@
       </article>
     </section>
 
-    <section class="solution" id="drink">
+    <section
+  class="solution"
+  id="drink"
+  data-ga-section="デンタルアーマー"
+>
       <p class="eyebrow">毎日のケアを無理なく続けるために</p>
       <h3>飲んでケアする</h3>
         <p class="description">大切な愛犬・愛猫のために生まれた、動物病院取扱製品。有害な食品添加物の不使用など、安全性にこだわりました。</p>
@@ -128,7 +166,9 @@
         </div>
         <p class="category"><span>液状</span> 犬猫口腔ケアウォーター(150g)</p>
         <p class="price"><small>¥</small>3,300<small>税込</small></p>
-        <p class="detail-btn">詳しい使い方を見る</p>
+        <p class="detail-btn"
+        data-ga-event="product_detail_open"
+  data-ga-name="デンタルアーマー">詳しい使い方を見る</p>
 
 <div class="detail_01">
     <div class="detailed01">
@@ -149,7 +189,11 @@
         </div>
  </section>
 
- <section class="solution_02" id="brush">
+ <section
+  class="solution_02"
+  id="brush"
+  data-ga-section="クリスタルジョイ"
+>
     <p class="eyebrow">一度でしっかり汚れにアプローチ</p>
     <h3>歯磨きでケアする</h3>
       <p class="description">無色透明・無味・無臭の<br>革新的な口腔ケアジェル</p>
@@ -167,7 +211,8 @@
       </div>
       <p class="category"><span>ジェル</span> 犬猫用歯みがきジェル(60g)</p>
       <p class="price"><small>¥</small>2,200<small>税込</small></p>
-      <p class="detail-btn">詳しい使い方を見る</p>
+      <p class="detail-btn"  data-ga-event="product_detail_open"
+      data-ga-name="クリスタルジョイ">詳しい使い方を見る</p>
 
       <div class="detail_03">
             <div class="detailed03">
@@ -188,7 +233,10 @@
 
 
 
-<section class="solution_03">
+<section
+  class="solution_03"
+  data-ga-section="チカペカ歯ブラシ"
+>
     <div class="chicapetca_box">
 
       <div class="chicapetca_img">
@@ -239,9 +287,13 @@
   
     <span class="order_arrow" aria-hidden="true"></span>
   
-    <a href="https://forms.gle/WWhDDW5MDCYWm1ik8" class="order_button">
-      商品を注文する
-  
+    <a
+    href="https://forms.gle/WWhDDW5MDCYWm1ik8"
+    class="order_button"
+    data-ga-event="order_form_click"
+    data-ga-name="Google注文フォーム"
+  >
+    商品を選んで注文する
     </a>
   
   </section>
@@ -305,6 +357,72 @@
       }
     });
   </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function sendGaEvent(eventName, contentName) {
+      if (typeof gtag !== "function") return;
+
+      gtag("event", eventName, {
+        content_name: contentName
+      });
+    }
+
+    /* 属性を付けたリンク・ボタンのクリック */
+    document.querySelectorAll("[data-ga-event]").forEach(function (element) {
+      element.addEventListener("click", function () {
+        sendGaEvent(
+          element.dataset.gaEvent,
+          element.dataset.gaName
+        );
+      });
+    });
+
+    /* ハンバーガーメニューを開いた */
+    const menuButton = document.querySelector(".menu_button");
+
+    if (menuButton) {
+      menuButton.addEventListener("click", function () {
+        if (menuButton.getAttribute("aria-expanded") === "true") {
+          sendGaEvent(
+            "menu_open",
+            "ハンバーガーメニュー"
+          );
+        }
+      });
+    }
+
+    /* 各商品セクションが50％以上表示された */
+    const viewedSections = new Set();
+
+    const sectionObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+
+          const sectionName = entry.target.dataset.gaSection;
+
+          if (viewedSections.has(sectionName)) return;
+
+          sendGaEvent(
+            "product_section_view",
+            sectionName
+          );
+
+          viewedSections.add(sectionName);
+          sectionObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.5
+      }
+    );
+
+    document.querySelectorAll("[data-ga-section]").forEach(function (section) {
+      sectionObserver.observe(section);
+    });
+  });
+</script>
 
 </body>
 
