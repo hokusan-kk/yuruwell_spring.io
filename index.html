@@ -65,11 +65,13 @@
   飲んでケア
 </a>
 <a
-href="#brush"
-data-ga-event="care_method_click"
-data-ga-name="歯みがきケア"
+  href="#brush"
+  data-ga-event="care_method_click"
+  data-ga-name="歯みがきケア"
 >
-歯みがきケア
+  歯みがきケア
+</a>
+
 <a
   href="https://forms.gle/WWhDDW5MDCYWm1ik8"
   data-ga-event="order_form_click"
@@ -135,14 +137,18 @@ data-ga-name="歯みがきケア"
   飲んでケアの商品を見る
   <span>▶︎</span>
 </a>
-
-      </article>
+</article>
       
       <article class="choice-card blue">
         <p>しっかりケアしたい子には…</p>
         <h4>歯みがきケア</h4>
         <p>ジェルややわらかい歯ブラシを使って、<br>歯の汚れを直接お手入れします。</p>
-        <a href="#brush">歯みがきケアの商品を見る <span>▶︎</span></a>
+        <a
+  href="#brush"
+  data-ga-event="care_method_click"
+  data-ga-name="歯みがきケア">
+  歯みがきケアの商品を見る
+  <span>▶︎</span></a>
       </article>
     </section>
 
@@ -312,15 +318,23 @@ data-ga-name="歯みがきケア"
 
 
 <script>
-  const detailBtns = document.querySelectorAll('.detail-btn');
-  
+  const detailBtns = document.querySelectorAll(".detail-btn");
+
   detailBtns.forEach((btn) => {
-    btn.addEventListener('click', function () {
+    btn.addEventListener("click", function () {
       const detailContent = btn.nextElementSibling;
-      detailContent.classList.toggle('is-open');
+      const willOpen = !detailContent.classList.contains("is-open");
+
+      detailContent.classList.toggle("is-open");
+
+      if (willOpen && typeof gtag === "function") {
+        gtag("event", "product_detail_open", {
+          content_name: btn.dataset.gaName
+        });
+      }
     });
   });
-  </script>
+</script>
   <script>
     const menuButton = document.querySelector(".menu_button");
     const mobileMenu = document.querySelector(".mobile_menu");
@@ -368,15 +382,18 @@ data-ga-name="歯みがきケア"
       });
     }
 
-    /* 属性を付けたリンク・ボタンのクリック */
-    document.querySelectorAll("[data-ga-event]").forEach(function (element) {
-      element.addEventListener("click", function () {
-        sendGaEvent(
-          element.dataset.gaEvent,
-          element.dataset.gaName
-        );
-      });
+   /* 属性を付けたリンク・ボタンのクリック */
+document
+  .querySelectorAll('[data-ga-event]:not(.detail-btn)')
+  .forEach(function (element) {
+    element.addEventListener("click", function () {
+      sendGaEvent(
+        element.dataset.gaEvent,
+        element.dataset.gaName
+      );
     });
+  });
+  
 
     /* ハンバーガーメニューを開いた */
     const menuButton = document.querySelector(".menu_button");
