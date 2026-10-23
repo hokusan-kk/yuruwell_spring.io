@@ -1,0 +1,2 @@
+GitHub Rulesetの動作確認用ファイルです。
+Pull Requestのテスト完了後に削除します。
