@@ -1,0 +1,39 @@
+
+name: HTML CSS Security Check
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  security-check:
+    name: HTML and CSS Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Check for conflict markers
+        shell: bash
+        run: |
+          if grep -RnE '^(<<<<<<< |=======|>>>>>>> )' \
+            --include='*.html' --include='*.css' .; then
+            echo "Error: Conflict markers detected."
+            exit 1
+          fi
+
+      - name: Check for unsafe HTML patterns
+        shell: bash
+        run: |
+          if grep -RniE \
+            '(javascript:|<script[^>]+src="http://)' \
+            --include='*.html' .; then
+            echo "Warning: Review potentially unsafe HTML."
+            exit 1
+          fi
