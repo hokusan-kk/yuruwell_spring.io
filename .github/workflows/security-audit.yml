@@ -58,7 +58,7 @@ jobs:
           cat > eslint.config.mjs <<'EOF'
           export default [{
             files: ['**/*.[jJ][sS]', '**/*.[mM][jJ][sS]', '**/*.[cC][jJ][sS]'],
-            ignores: ['node_modules/**'],
+            ignores: ['node_modules/**', 'eslint.config.mjs', '.github/**'],
             languageOptions: { ecmaVersion: 'latest', sourceType: 'script' },
             rules: {
               'no-eval': 'error',
