@@ -23,7 +23,7 @@ jobs:
         shell: bash
         run: |
           if grep -RnE '^(<<<<<<< |=======|>>>>>>> )' \
-            --include='*.html' --include='*.css' .; then
+            --include='*.[hH][tT][mM][lL]' --include='*.[cC][sS][sS]' .; then
             echo "Error: Conflict markers detected."
             exit 1
           fi
@@ -33,7 +33,7 @@ jobs:
         run: |
           if grep -RniE \
             '(javascript:|<script[^>]+src="http://)' \
-            --include='*.html' .; then
+            --include='*.[hH][tT][mM][lL]' .; then
             echo "Warning: Review potentially unsafe HTML."
             exit 1
           fi
