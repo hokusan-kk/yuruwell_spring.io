@@ -27,7 +27,6 @@ jobs:
           node-version: '22'
 
       - name: ESLint JavaScript and inline scripts
-        continue-on-error: true
         shell: bash
         run: |
           node - <<'NODE'
@@ -80,14 +79,12 @@ jobs:
           npm_config_cache=/tmp/yuruwell-audit-npm-cache npm install --no-audit --no-fund --ignore-scripts --legacy-peer-deps html-validate@10.5.0 stylelint@16.26.1
 
       - name: HTML syntax audit
-        continue-on-error: true
         shell: bash
         run: |
           find . -type f -iname '*.html' -not -path './.git/*' -print0 |
-            xargs -0 -r -n 1 sh -c '/tmp/yuruwell-audit-tools/node_modules/.bin/html-validate "$0"'
+            xargs -0 -r -n 1 sh -c '/tmp/yuruwell-audit-tools/node_modules/.bin/html-validate --config .github/htmlvalidate-security.json "$0"'
 
       - name: CSS syntax audit
-        continue-on-error: true
         shell: bash
         run: |
           find . -type f -iname '*.css' -not -path './.git/*' -print0 |
@@ -95,7 +92,6 @@ jobs:
 
       - name: Check public website security headers
         if: github.event_name != 'pull_request'
-        continue-on-error: true
         shell: bash
         run: |
           url='https://yuruwell.marketing.hokusan-kk.co.jp/'
