@@ -83,7 +83,7 @@ jobs:
         shell: bash
         run: |
           find . -type f -iname '*.css' -not -path './.git/*' -print0 |
-            xargs -0 -r -n 1 sh -c 'npm exec --yes --package=stylelint@16.26.1 -- stylelint --custom-syntax postcss-css-in-js "$0"'
+            xargs -0 -r -n 1 sh -c 'npm exec --yes --package=stylelint@16.26.1 -- stylelint --config .github/stylelint-security.config.json "$0"'
 
       - name: Check public website security headers
         if: github.event_name != 'pull_request'
