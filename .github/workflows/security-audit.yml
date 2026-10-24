@@ -77,7 +77,7 @@ jobs:
           mkdir -p /tmp/yuruwell-audit-tools
           cd /tmp/yuruwell-audit-tools
           echo '{"name":"yuruwell-audit-tools","private":true,"version":"1.0.0"}' > package.json
-          npm install --no-audit --no-fund --ignore-scripts html-validate@10.5.0 stylelint@16.26.1
+          npm_config_cache=/tmp/yuruwell-audit-npm-cache npm install --no-audit --no-fund --ignore-scripts --legacy-peer-deps html-validate@10.5.0 stylelint@16.26.1
 
       - name: HTML syntax audit
         continue-on-error: true
