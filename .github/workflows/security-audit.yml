@@ -1,0 +1,103 @@
+name: Extended Security Audit
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 2 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  source-audit:
+    name: Source and dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+
+      - name: ESLint JavaScript and inline scripts
+        shell: bash
+        run: |
+          node - <<'NODE'
+          const fs = require('fs'), path = require('path');
+          const out = '.security-inline-js';
+          fs.mkdirSync(out, { recursive: true });
+          let count = 0;
+          function walk(dir) {
+            for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+              if (['.git', 'node_modules', '.security-inline-js'].includes(ent.name)) continue;
+              const p = path.join(dir, ent.name);
+              if (ent.isDirectory()) walk(p);
+              else if (ent.isFile() && /\.html$/i.test(p)) {
+                const html = fs.readFileSync(p, 'utf8');
+                const re = /<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi;
+                let m;
+                while ((m = re.exec(html))) {
+                  if (/\bsrc\s*=/i.test(m[1]) || /\btype\s*=\s*["'](?:application\/ld\+json|application\/json|importmap)["']/i.test(m[1])) continue;
+                  if (!m[2].trim()) continue;
+                  fs.writeFileSync(path.join(out, 'inline-' + (++count) + '.js'), m[2]);
+                }
+              }
+            }
+          }
+          walk('.');
+          console.log('Extracted inline scripts:', count);
+          NODE
+          cat > eslint.config.mjs <<'EOF'
+          export default [{
+            files: ['**/*.[jJ][sS]', '**/*.[mM][jJ][sS]', '**/*.[cC][jJ][sS]'],
+            ignores: ['node_modules/**', 'eslint.config.mjs', '.github/**'],
+            languageOptions: { ecmaVersion: 'latest', sourceType: 'script' },
+            rules: {
+              'no-eval': 'error',
+              'no-implied-eval': 'error',
+              'no-new-func': 'error',
+              'no-debugger': 'warn',
+              'no-unsafe-finally': 'error'
+            }
+          }];
+          EOF
+          npm exec --yes --package=eslint@9.39.1 -- eslint . --no-error-on-unmatched-pattern
+
+      - name: Install audit tools
+        shell: bash
+        run: |
+          mkdir -p /tmp/yuruwell-audit-tools
+          cd /tmp/yuruwell-audit-tools
+          echo '{"name":"yuruwell-audit-tools","private":true,"version":"1.0.0"}' > package.json
+          npm_config_cache=/tmp/yuruwell-audit-npm-cache npm install --no-audit --no-fund --ignore-scripts --legacy-peer-deps html-validate@10.5.0 stylelint@16.26.1
+
+      - name: HTML syntax audit
+        shell: bash
+        run: |
+          find . -type f -iname '*.html' -not -path './.git/*' -print0 |
+            xargs -0 -r -n 1 sh -c '/tmp/yuruwell-audit-tools/node_modules/.bin/html-validate --config .github/htmlvalidate-security.json "$0"'
+
+      - name: CSS syntax audit
+        shell: bash
+        run: |
+          find . -type f -iname '*.css' -not -path './.git/*' -print0 |
+            xargs -0 -r -n 1 sh -c '/tmp/yuruwell-audit-tools/node_modules/.bin/stylelint --config .github/stylelint-security.config.json "$0"'
+
+      - name: Check public website security headers
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          url='https://yuruwell.marketing.hokusan-kk.co.jp/'
+          curl --fail --silent --show-error --location --max-time 20 --dump-header headers.txt --output /dev/null "$url"
+          for h in strict-transport-security content-security-policy x-content-type-options referrer-policy; do
+            if ! grep -qi "^$h:" headers.txt; then
+              echo "::warning::Missing or unavailable security header: $h"
+            fi
+          done

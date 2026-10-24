@@ -1,0 +1,53 @@
+name: Actions and External Dependencies Audit
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '11 4 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Workflow and CDN audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Check workflow permissions and action references
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          errors = []
+          for p in Path('.github/workflows').glob('*.y*ml'):
+              s = p.read_text()
+              if not re.search(r'(?m)^permissions:', s):
+                  errors.append(f'{p}: missing explicit permissions')
+              for line in s.splitlines():
+                  m = re.search(r'\buses:\s*([^\s#]+)', line)
+                  if m and not re.search(r'@[a-f0-9]{40}$', m.group(1)):
+                      print(f'NOTICE: {p}: action not pinned to full SHA: {m.group(1)}')
+          for e in errors: print('ERROR:', e)
+          if errors: raise SystemExit(1)
+          PY
+      - name: Inventory external script and stylesheet URLs
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          for p in Path('.').rglob('*'):
+              if p.is_file() and p.suffix.lower() in ('.html', '.htm'):
+                  text = p.read_text(errors='replace')
+                  for u in re.findall(r'https?://[^\s"\x27<>]+', text):
+                      if re.search(r'\.(js|css)(?:[?#]|$)', u, re.I) or any(x in u for x in ('unpkg.com/', 'jsdelivr.net/', 'cdnjs.cloudflare.com/')):
+                          print(f'EXTERNAL DEPENDENCY: {p}: {u}')
+          PY
