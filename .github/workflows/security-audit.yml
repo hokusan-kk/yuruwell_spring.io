@@ -71,19 +71,24 @@ jobs:
           EOF
           npm exec --yes --package=eslint@9.39.1 -- eslint . --no-error-on-unmatched-pattern
 
+      - name: Install audit tools
+        shell: bash
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts html-validate@10.5.0 stylelint@16.26.1
+
       - name: HTML syntax audit
         continue-on-error: true
         shell: bash
         run: |
           find . -type f -iname '*.html' -not -path './.git/*' -print0 |
-            xargs -0 -r -n 1 sh -c 'npm exec --yes --package=html-validate@10.5.0 -- html-validate "$0"'
+            xargs -0 -r -n 1 sh -c './node_modules/.bin/html-validate "$0"'
 
       - name: CSS syntax audit
         continue-on-error: true
         shell: bash
         run: |
           find . -type f -iname '*.css' -not -path './.git/*' -print0 |
-            xargs -0 -r -n 1 sh -c 'npm exec --yes --package=stylelint@16.26.1 -- stylelint --config .github/stylelint-security.config.json "$0"'
+            xargs -0 -r -n 1 sh -c './node_modules/.bin/stylelint --config .github/stylelint-security.config.json "$0"'
 
       - name: Check public website security headers
         if: github.event_name != 'pull_request'
