@@ -76,7 +76,7 @@ jobs:
         run: |
           mkdir -p /tmp/yuruwell-audit-tools
           cd /tmp/yuruwell-audit-tools
-          printf '%s\\n' '{"name":"yuruwell-audit-tools","private":true,"version":"1.0.0"}' > package.json
+          echo '{"name":"yuruwell-audit-tools","private":true,"version":"1.0.0"}' > package.json
           npm install --no-audit --no-fund --ignore-scripts html-validate@10.5.0 stylelint@16.26.1
 
       - name: HTML syntax audit
