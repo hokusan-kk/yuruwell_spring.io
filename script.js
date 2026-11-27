@@ -2,6 +2,33 @@
 'use strict';
 const data=JSON.parse(document.getElementById('lp-data').textContent);
 const $=id=>document.getElementById(id);
+
+// Only explicitly approved local image paths may be assigned to src.
+function approvedImagePath(value) {
+  switch (value) {
+    case 'images/detail_01.png': return 'images/detail_01.png';
+    case 'images/detail_02.png': return 'images/detail_02.png';
+    case 'images/detail_03.png': return 'images/detail_03.png';
+    case 'images/detail_04.png': return 'images/detail_04.png';
+    case 'images/detail_05.png': return 'images/detail_05.png';
+    case 'images/detail_06.png': return 'images/detail_06.png';
+    case 'images/detail_07.png': return 'images/detail_07.png';
+    case 'images/detail_08.png': return 'images/detail_08.png';
+    case 'images/detail_09.png': return 'images/detail_09.png';
+    case 'images/product_00.png': return 'images/product_00.png';
+    case 'images/product_01.png': return 'images/product_01.png';
+    case 'images/product_02.png': return 'images/product_02.png';
+    case 'images/product_03.png': return 'images/product_03.png';
+    case 'images/product_04.png': return 'images/product_04.png';
+    case 'images/product_05.png': return 'images/product_05.png';
+    case 'images/product_06.png': return 'images/product_06.png';
+    case 'images/product_07.png': return 'images/product_07.png';
+    case 'images/product_08.png': return 'images/product_08.png';
+    case 'images/product_09.png': return 'images/product_09.png';
+    default: return '';
+  }
+}
+
 const scenes=[data.intro,...data.products,data.outro];
 let current=-1,token=0,modalOpen=false,previousFocus=null,detailIndex=0;
 let introAnimationFrame = null;
@@ -107,7 +134,7 @@ function show(index){
     setTimeout(()=>old.remove(),170);
   }
   img.classList.remove('active');
-  const src=s.img||'';
+  const src=approvedImagePath(s.img);
   if(!src){img.removeAttribute('src');img.alt='';return;}
   const preload=new Image();
   const apply=()=>{
@@ -194,7 +221,14 @@ function showDetail(index) {
   image.hidden = false;
   missing.hidden = true;
   image.onerror = () => { image.hidden = true; missing.hidden = false; };
-  image.src = product.detailImg || product.img || '';
+  const src = approvedImagePath(product.detailImg) || approvedImagePath(product.img);
+  if (src) {
+    image.src = src;
+  } else {
+    image.removeAttribute('src');
+    image.hidden = true;
+    missing.hidden = false;
+  }
   image.alt = `${product.name}の詳細画像`;
   $('detailModalContent').scrollTop = 0;
 }
