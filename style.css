@@ -1423,3 +1423,12 @@ html.native-scroll .screen, .screen {
     animation: none;
   }
 }
+
+/* Preserve block layout for valid phrasing content inside the detail button. */
+.panel .product-title {
+  display: block;
+  font-weight: bold;
+}
+.panel .product-desc {
+  display: block;
+}
